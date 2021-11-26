@@ -33,7 +33,6 @@ class _LoginScreenState extends State<LoginScreen> {
     final double height= MediaQuery.of(context).size.height;
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
-      //backgroundColor: Colors.green[600],
        body: Container(
          padding: const EdgeInsets.only(left: 40, right: 40),
          child: Form(
@@ -42,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
                mainAxisAlignment: MainAxisAlignment.start,
                children: [
                   SizedBox(height:height*0.05),
-                  Text('Sign In',style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold),),
+                  Text('Sign In',style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),),
                   SizedBox(height:height*0.05,),
                   TextFormField(
                     decoration: InputDecoration(
@@ -87,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: (){
                           if(formKey.currentState!.validate())
                           {
-                            final snackBar = SnackBar(content: Text('Logging In'));
+                            final snackBar = SnackBar(content: Text('Welcome'));
                             _scaffoldKey.currentState!.showSnackBar(snackBar);
                           }
                         },
@@ -95,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: ElevatedButton.styleFrom(
                         minimumSize: Size(110, 50),
                         textStyle: TextStyle(fontSize: 20),
-                        primary: Colors.red,
+                        primary: Color(0xffffac30),
                         onPrimary: Colors.white,)
                       ),
                       ],
