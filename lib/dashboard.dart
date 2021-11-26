@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-/**void main() {
-  runApp(DashBoard());
-}**/
-
 class DashBoard extends StatelessWidget {
   const DashBoard({ Key? key }) : super(key: key);
 
