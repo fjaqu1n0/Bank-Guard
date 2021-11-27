@@ -26,6 +26,16 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController _textController = TextEditingController();
+  TextEditingController _textpassController = TextEditingController();
+  
+  List<String> userCredentials = [
+    'admin',
+  ];
+  List<String> passCredentials = [
+    'admin',
+  ];
+  
   final formKey = GlobalKey<FormState>(); //key for form
   String name="";
   @override
@@ -41,53 +51,60 @@ class _LoginScreenState extends State<LoginScreen> {
                mainAxisAlignment: MainAxisAlignment.start,
                children: [
                   SizedBox(height:height*0.05),
-                  Text('Sign In',style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.bold),),
+                  Image.asset('assets/images/BankGuard1.png', height: 180,),
                   SizedBox(height:height*0.05,),
                   TextFormField(
+                      controller: _textController,
                     decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(40)),
+                         hintText: 'Username',
+                        hintStyle: TextStyle(color: Colors.black),
                       labelText: "Username",
                       fillColor: Colors.white,
                       filled: true,
                     ),
-                    validator: (value)
-                    {
-                      if(value!.isEmpty ||!RegExp(r'^[a-z A-Z]+$').hasMatch(value))
-                      {
-                        return "Incorrect username";
-                      } else
-                      {
-                        return null;
-                      }
-                    },
                   ),
                   SizedBox(height:height*0.05,),
                   TextFormField(
+                     controller: _textpassController,
+                    obscureText: true,
                     decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(40))
+                      hintText: 'Password',
+                      hintStyle: TextStyle(color: Colors.black),
                       labelText: "Password",
                       fillColor: Colors.white,
                       filled: true,
                     ),
-                    validator: (value)
-                    {
-                      if(value!.isEmpty ||!RegExp(r'^[a-z A-Z]+$').hasMatch(value))
-                      {
-                        return "Incorrect password";
-                      } else
-                      {
-                        return null;
-                      }
-                    },
                   ),
-                  SizedBox(height:height*0.05,),
+                  SizedBox(height:height*0.05, width: 200,),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
                         onPressed: (){
-                          if(formKey.currentState!.validate())
+                         if (!userCredentials.contains(_textController.text.toLowerCase()) ||(!passCredentials.contains(_textpassController.text.toLowerCase()))) 
                           {
-                            final snackBar = SnackBar(content: Text('Welcome'));
-                            _scaffoldKey.currentState!.showSnackBar(snackBar);
+                            setState(() 
+                            {
+                              final snackBar = SnackBar(
+                                  content: Text('Incorrect Username/Password'));
+                                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                            });
+                          } else 
+                          {
+                            setState(() 
+                            {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const DashBoard()),
+                              );
+                            });
                           }
                         },
                         child: Text('Login'),
