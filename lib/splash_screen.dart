@@ -1,7 +1,11 @@
 // ignore: file_names
+// this file serves as main.dart
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'login_screen.dart';
+import 'authentication.dart';
+import 'package:money_transfer_app/providers/amount_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 
 void main() {
   runApp(Splash());
@@ -10,19 +14,27 @@ void main() {
 class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: new ThemeData(scaffoldBackgroundColor: const Color(0xfff5f5f5)),
-      home: SplashScreen(),
-      routes: {
-        '/LoginScreen' : (context)=>LoginScreen(),
-      }
-    );
+     return MultiProvider(
+        providers: [ChangeNotifierProvider.value(value: AmountProvider())],
+        child: Sizer(builder: (context, orientation, deviceType) {
+          return MaterialApp(
+            title: 'Mobile Banking App',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            home: const SplashScreen(title: 'Mobile Banking App'),
+          );
+        }));
   }
 }
 
 class SplashScreen extends StatefulWidget {
+   const SplashScreen({Key? key, required this.title}) : super(key: key);
+  final String title;
+
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
@@ -31,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(Duration(seconds: 4), (){
+    Timer(Duration(seconds: 3), (){
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=> AuthScreen()));
     });
     
@@ -55,41 +67,3 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 }
 
-class AuthScreen extends StatefulWidget {
-  const AuthScreen({ Key? key }) : super(key: key);
-
-  @override
-  _AuthScreenState createState() => _AuthScreenState();
-}
-
-class _AuthScreenState extends State<AuthScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(top: 9),
-              child: ElevatedButton(
-                onPressed: openLoginScreen,
-                child: Text('Login'),
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(210, 50),
-                  textStyle: TextStyle(fontSize: 20),
-                  primary: Color(0xffffac30),
-                  onPrimary: Colors.black,
-                ),
-              )
-            )
-          ],
-        )
-      )
-      );
-  }
-  void openLoginScreen()
-  {
-    Navigator.pushNamed(context, '/LoginScreen');
-  }
-}
