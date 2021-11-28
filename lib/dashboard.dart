@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'send_money.dart';
+import 'package:money_transfer_app/providers/amount_provider.dart';
+
+
 
 class DashBoard extends StatelessWidget {
   const DashBoard({ Key? key }) : super(key: key);
@@ -39,7 +44,7 @@ class _DashScreenState extends State< DashScreen> {
                       height: 50,
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage('assets/images/logo.png'),
+                          image: AssetImage('assets/images/logo2.png'),
                           fit: BoxFit.contain
                         )
                       ),
@@ -74,7 +79,7 @@ class _DashScreenState extends State< DashScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("10,000", style: TextStyle(
+                      Text(Provider.of<AmountProvider>(context).getSavings.toString(), style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w700
                   ),),
@@ -85,66 +90,10 @@ class _DashScreenState extends State< DashScreen> {
                     ),)
                     ],
                   ),
-                  Container(
-                    height: 60,
-                    width: 60,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Color(0xffffac30)
-                    ),
-                    child: Icon(
-                      Icons.add,
-                      size: 30,
-                    )
-                  )
                 ],
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("Send Money", style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w800,
-                    fontFamily: 'avenir'
-                    ),),
-                    Container(
-                      height: 60,
-                      width: 60,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/images/scanqr.png') 
-                        )
-                      ),
-                    )
-              ],
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  Container(
-                    height: 70,
-                    width: 70,
-                    margin: EdgeInsets.only(right: 20),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Color(0xffffac30),
-                    ),
-                    child: Icon(
-                      Icons.add,
-                      size: 40,
-                    ),
-                  ),
-                  avatarWidget("avatar1", "Jonathan"),
-                  avatarWidget("avatar2", "Joseph"),
-                  avatarWidget("avatar3", "Suzie"),
-                ],
-              ),
-            ),
+            SizedBox( height: 10,),
             SizedBox(height: 20,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -161,21 +110,32 @@ class _DashScreenState extends State< DashScreen> {
                 )
               ],
             ),
+            SingleChildScrollView(),
+            Expanded(
+              child: GridView.count(crossAxisCount: 1,
+              childAspectRatio: 0.1,
+              children: [serviceWidget("sendMoney", "Send\nMoney"),
+              ],
+              ),
+            ),
             Expanded(
               child: GridView.count(crossAxisCount: 4,
               childAspectRatio: 0.7,
               children: [
                 serviceWidget("sendMoney", "Send\nMoney"),
-                serviceWidget("receiveMoney", "Receive\nMoney"),
                 serviceWidget("phone", "Mobile\nRecharge"),
                 serviceWidget("electricity", "Electricity\nBill"),
-                serviceWidget("tag", "Cashback\nOffers"),
                 serviceWidget("movie", "Movie\nTicket"),
                 serviceWidget("flight", "Flight\nTicket"),
-                serviceWidget("more", "More\n"),
+                serviceWidget("water", "Water\nBill"),
+                serviceWidget("telco", "Telecom\nServices"),
+                serviceWidget("government", "Government"),
+                serviceWidget("internet", "Cable/Internet"),
+                serviceWidget("transpo", "Transportation"),
+                serviceWidget("credit", "Credit/Debit"),
+                serviceWidget("insurance", "Insurance"),
               ],
               ),
-
             )
           ],
         ),
@@ -189,7 +149,10 @@ class _DashScreenState extends State< DashScreen> {
       children: [
         Expanded(
           child: InkWell(
-            onTap: (){},
+            onTap: ()
+            {
+              Navigator.push(context,MaterialPageRoute(builder: (context) => const TransferMoney()));
+            },
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -217,42 +180,5 @@ class _DashScreenState extends State< DashScreen> {
     );
 
   }
-  Container avatarWidget(String img, String name)
-    {
-      return Container(
-        margin: EdgeInsets.only(right: 10),
-        height: 150,
-        width: 120,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(15)),
-          color: Color(0xffdedede)
-        ),
-        child:  Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Container(
-              height: 60,
-              width: 60,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.white,
-                image: DecorationImage(
-                  image: AssetImage('assets/images/$img.png'),
-                  fit: BoxFit.contain
-                ),
-                border: Border.all(
-                  color: Colors.black,
-                  width: 2
-                )
-              ),
-            ),
-            Text(name, style: TextStyle(
-              fontSize: 16,
-              fontFamily: 'avenir',
-              fontWeight: FontWeight.w700
-            ),)
-          ],
-        ),
-      );
-    }
+
 }
