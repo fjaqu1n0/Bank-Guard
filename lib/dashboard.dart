@@ -107,17 +107,17 @@ class _DashScreenState extends State< DashScreen> {
                   height: 60,
                   width: 60,
                   child: Icon(Icons.dialpad),
+                ),
+                IconButton(
+                  iconSize: 40,
+                  icon: Icon(Icons.send),
+                  onPressed: (){
+                    Navigator.push(context,MaterialPageRoute(builder: (context) => const TransferMoney()));
+                  },
                 )
               ],
             ),
             SingleChildScrollView(),
-            Expanded(
-              child: GridView.count(crossAxisCount: 1,
-              childAspectRatio: 0.1,
-              children: [serviceWidget("sendMoney", "Send\nMoney"),
-              ],
-              ),
-            ),
             Expanded(
               child: GridView.count(crossAxisCount: 4,
               childAspectRatio: 0.7,
