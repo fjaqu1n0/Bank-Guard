@@ -35,7 +35,7 @@ class _DashScreenState extends State< DashScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children:[
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
                   children: [
@@ -93,8 +93,25 @@ class _DashScreenState extends State< DashScreen> {
                 ],
               ),
             ),
-            SizedBox( height: 10,),
-            SizedBox(height: 20,),
+            SizedBox(height: 30,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text('Send Money', style: TextStyle(
+                  fontSize: 21,
+                  fontWeight: FontWeight.w800,
+                  fontFamily: 'avenir',
+                ),),
+                IconButton(
+                  iconSize: 35,
+                  icon: Icon(Icons.send),
+                  onPressed: (){
+                    Navigator.push(context,MaterialPageRoute(builder: (context) => const TransferMoney()));
+                  },
+                )
+              ],
+            ),
+            SizedBox(height:50),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -103,18 +120,6 @@ class _DashScreenState extends State< DashScreen> {
                   fontWeight: FontWeight.w800,
                   fontFamily: 'avenir',
                 ),),
-                Container(
-                  height: 60,
-                  width: 60,
-                  child: Icon(Icons.dialpad),
-                ),
-                IconButton(
-                  iconSize: 40,
-                  icon: Icon(Icons.send),
-                  onPressed: (){
-                    Navigator.push(context,MaterialPageRoute(builder: (context) => const TransferMoney()));
-                  },
-                )
               ],
             ),
             SingleChildScrollView(),
