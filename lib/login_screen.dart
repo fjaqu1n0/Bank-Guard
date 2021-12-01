@@ -15,6 +15,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
    TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +56,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 hintStyle: TextStyle(color: Colors.black),
                 fillColor: Color(0xFFF3E5F5),
                 filled: true,
+                suffixIcon: IconButton(
+                  icon:Icon(_obscureText ? Icons.visibility : Icons.visibility_off, color: Colors.black,),
+                  onPressed:(){
+                    setState(() {
+                      _obscureText = !_obscureText;
+                    });
+                  }
+                )
               ),
             ),
             Padding(
