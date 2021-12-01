@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:money_transfer_app/providers/amount_provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:provider/provider.dart';
+import 'confirm_transfer.dart';
 
 class TransferMoney extends StatefulWidget {
   const TransferMoney({Key? key}) : super(key: key);
@@ -103,7 +104,7 @@ class _TransferMoneyState extends State<TransferMoney> {
     } else {
       Provider.of<AmountProvider>(context, listen: false)
           .subtractSavings(amount);
-      Navigator.pop(context);
+      Navigator.push(context,MaterialPageRoute(builder: (context) => TransferDetails(amountTransferred: amountTransferController.text, accountNumber: accountNumberController.text,)));
     }
   }
 }
