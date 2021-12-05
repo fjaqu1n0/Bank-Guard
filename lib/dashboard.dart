@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'send_money.dart';
-import 'package:money_transfer_app/providers/amount_provider.dart';
-
-
+import 'package:money_transfer_app/providers/balance.dart';
+import 'service_money.dart';
 
 class DashBoard extends StatelessWidget {
   const DashBoard({ Key? key }) : super(key: key);
@@ -44,7 +43,7 @@ class _DashScreenState extends State< DashScreen> {
                       height: 50,
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage('assets/images/logo2.png'),
+                          image: AssetImage('assets/images/logo2_2.png'),
                           fit: BoxFit.contain
                         )
                       ),
@@ -93,9 +92,9 @@ class _DashScreenState extends State< DashScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 30,),
+            SizedBox( height: 10,),
+            SizedBox(height: 20,),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text('Send Money', style: TextStyle(
                   fontSize: 21,
@@ -103,18 +102,19 @@ class _DashScreenState extends State< DashScreen> {
                   fontFamily: 'avenir',
                 ),),
                 IconButton(
-                  iconSize: 35,
+                  iconSize: 30,
                   icon: Icon(Icons.send),
-                  onPressed: (){
+                  onPressed: ()
+                  {
                     Navigator.push(context,MaterialPageRoute(builder: (context) => const TransferMoney()));
                   },
                 )
               ],
             ),
-            SizedBox(height:50),
+            SizedBox( height: 20,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              children: const [
                 Text('Services', style: TextStyle(
                   fontSize: 21,
                   fontWeight: FontWeight.w800,
@@ -127,7 +127,7 @@ class _DashScreenState extends State< DashScreen> {
               child: GridView.count(crossAxisCount: 4,
               childAspectRatio: 0.7,
               children: [
-                serviceWidget("sendMoney", "Send\nMoney"),
+                serviceWidget("school", "School"),
                 serviceWidget("phone", "Mobile\nRecharge"),
                 serviceWidget("electricity", "Electricity\nBill"),
                 serviceWidget("movie", "Movie\nTicket"),
@@ -156,7 +156,7 @@ class _DashScreenState extends State< DashScreen> {
           child: InkWell(
             onTap: ()
             {
-              Navigator.push(context,MaterialPageRoute(builder: (context) => const TransferMoney()));
+              Navigator.push(context,MaterialPageRoute(builder: (context) => const ServiceMoney()));
             },
             child: Container(
               decoration: BoxDecoration(
