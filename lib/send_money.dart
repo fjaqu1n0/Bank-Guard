@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:money_transfer_app/providers/amount_provider.dart';
+import 'package:money_transfer_app/providers/balance.dart';
 import 'package:sizer/sizer.dart';
 import 'package:provider/provider.dart';
 import 'confirm_transfer.dart';
@@ -101,7 +101,13 @@ class _TransferMoneyState extends State<TransferMoney> {
     } else {
       Provider.of<AmountProvider>(context, listen: false)
           .subtractSavings(amount);
-      Navigator.push(context,MaterialPageRoute(builder: (context) => TransferDetails(amountTransferred: amountTransferController.text, accountNumber: accountNumberController.text,)));
+     Navigator.push(context,MaterialPageRoute(builder: (context) => TransferDetails(amountTransferred: amountTransferController.text, accountNumber: accountNumberController.text,)));
     }
   }
 }
+
+
+
+
+
+
