@@ -13,9 +13,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-   TextEditingController usernameController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool _obscureText = true;
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             TextField(
               controller: passwordController,
-              obscureText: true,
+              obscureText: _obscureText,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                     borderSide: BorderSide.none,
@@ -91,6 +92,8 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     ));
   }
+
+
   void authentication(String username, String password, BuildContext context) {
     if (username == 'admin' && password == 'admin') {
       Navigator.push(
