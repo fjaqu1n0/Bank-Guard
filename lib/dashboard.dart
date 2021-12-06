@@ -110,7 +110,7 @@ class DashBoard extends StatelessWidget {
             SingleChildScrollView(),
             Expanded(
               child: GridView.count(crossAxisCount: 4,
-              childAspectRatio: 0.7,
+              childAspectRatio: 0.5,
               children: [
                  Card(
                     color: Color(0xfff1f3f6),
@@ -338,14 +338,14 @@ class ServiceIcon extends StatelessWidget {
     return Column(
       children: [
           CircleAvatar(
-          radius: 25,
+          radius: 20,
           backgroundColor: Color(0xfff1f3f6),
           backgroundImage: AssetImage('assets/images/service$id.png'),
           ),  
-        SizedBox(height: 10,),
+        SizedBox(height: 5,),
         Text('$name',style: TextStyle(
             fontFamily: 'avenir',
-            fontSize: 14,
+            fontSize: 13,
           ),textAlign: TextAlign.center,)
       ],
     );
