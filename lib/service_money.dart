@@ -21,9 +21,6 @@ class _ServiceMoneyState extends State<ServiceMoney> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /**appBar: AppBar(
-        //title: const Text('Transfer Money'),
-      ),**/
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
