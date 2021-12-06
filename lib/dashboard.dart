@@ -128,7 +128,7 @@ class _DashScreenState extends State< DashScreen> {
               childAspectRatio: 0.7,
               children: [
                 serviceWidget("school", "School"),
-                serviceWidget("phone", "Mobile\nRecharge"),
+                serviceWidget("health", "Healthcare"),
                 serviceWidget("electricity", "Electricity\nBill"),
                 serviceWidget("movie", "Movie\nTicket"),
                 serviceWidget("flight", "Flight\nTicket"),
