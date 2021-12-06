@@ -36,7 +36,12 @@ class AuthScreen extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(top: 9),
               child: ElevatedButton(
-                onPressed: ()=> exit(0),
+                onPressed: ()=> {
+                  const snackBar = SnackBar(
+                   content: Text(
+                   "Function disabled for demo purposes"));
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                },
                 child: Text('Exit'),
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(210, 50),
