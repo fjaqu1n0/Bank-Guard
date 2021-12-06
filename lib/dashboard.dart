@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:money_transfer_app/billing_screen.dart';
+import 'package:sdev_app/billing_screen.dart';
 import 'package:provider/provider.dart';
 import 'send_money.dart';
-import 'package:money_transfer_app/providers/balance.dart';
+import 'package:sdev_app/providers/balance.dart';
 
 class DashBoard extends StatelessWidget {
   const DashBoard({ Key? key }) : super(key: key);
