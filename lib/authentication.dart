@@ -36,7 +36,7 @@ class AuthScreen extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(top: 9),
               child: ElevatedButton(
-                onPressed: ()=> {
+                onPressed: (){
                   const snackBar = SnackBar(
                    content: Text(
                    "Function disabled for demo purposes"));
