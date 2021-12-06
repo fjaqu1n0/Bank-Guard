@@ -2,7 +2,7 @@
 //but intended for teh services/merchants
 
 import 'package:flutter/material.dart';
-import 'package:money_transfer_app/dashboard.dart';
+import 'package:sdev_app/dashboard.dart';
 
 class ServiceDetails extends StatelessWidget {
   String amountTransferred,accountNumber,accountName;
