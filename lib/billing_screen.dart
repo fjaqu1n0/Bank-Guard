@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:money_transfer_app/service_money.dart';
+import 'package:sdev_app/service_money.dart';
 
 
 class Merchants extends StatefulWidget {
