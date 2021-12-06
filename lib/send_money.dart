@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:money_transfer_app/providers/balance.dart';
+import 'package:sdev_app/providers/balance.dart';
 import 'package:sizer/sizer.dart';
 import 'package:provider/provider.dart';
 import 'confirm_transfer.dart';
