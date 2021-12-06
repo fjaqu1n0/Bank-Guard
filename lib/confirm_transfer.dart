@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:money_transfer_app/dashboard.dart';
+import 'package:sdev_app/dashboard.dart';
 
 class TransferDetails extends StatelessWidget {
   String amountTransferred,accountNumber;
