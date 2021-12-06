@@ -6,9 +6,11 @@ import 'package:flutter/services.dart';
 import 'package:money_transfer_app/providers/balance.dart';
 import 'package:sizer/sizer.dart';
 import 'package:provider/provider.dart';
+import 'package:money_transfer_app/service_details.dart';
 
 class ServiceMoney extends StatefulWidget {
-  const ServiceMoney({Key? key}) : super(key: key);
+  String serviceName;
+  ServiceMoney(this.serviceName,{Key? key, }) : super(key: key);
 
   @override
   _ServiceMoneyState createState() => _ServiceMoneyState();
@@ -21,14 +23,18 @@ class _ServiceMoneyState extends State<ServiceMoney> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+       backgroundColor: const Color(0xfff5f5f5),
+        title: const Text('Transfer Money',style: TextStyle(color: Colors.black),),
+        iconTheme: IconThemeData(color: Colors.black,),
+      ),
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Transfer Money',
-              style: TextStyle(fontWeight: FontWeight.w900, fontSize: 15.0.sp),
+               widget.serviceName, style: TextStyle(fontWeight: FontWeight.w900, fontSize: 15.0.sp),
             ),
             const SizedBox(
               height: 50.0,
@@ -117,7 +123,10 @@ class _ServiceMoneyState extends State<ServiceMoney> {
     } else {
       Provider.of<AmountProvider>(context, listen: false)
           .subtractSavings(amount);
-      Navigator.pop(context);
+     Navigator.push(context,MaterialPageRoute(builder: (context) => ServiceDetails(
+       amountTransferred: amountTransferController.text, 
+       accountNumber: accountNumberController.text, 
+       accountName: accountNameController.text,)));
     }
   }
 }
